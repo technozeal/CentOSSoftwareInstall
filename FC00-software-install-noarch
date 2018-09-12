@@ -1,0 +1,66 @@
+#! /bin/bash
+# This software installation script is for CentOS
+# You just need to hash out or remove any installation you don't want
+# You can also add in additional software packages you like
+ 
+#Updates
+yum update -y yum
+yum update -y
+ 
+#Additional yum plugins
+#yum install -y yum-plugin-fastestmirror
+ 
+#Additional yum repository configuration for rpmfusion and livna
+sudo yum localinstall -y --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+ 
+rpm -ivh http://rpm.livna.org/livna-release.rpm
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-livna
+yum update -y
+
+ 
+#Installing Essential Utilities
+yum install -y gparted
+yum install -y gcc kernel-devel
+yum install -y unrar
+#yum install -y cups-pdf
+yum install -y wget
+yum install -y smartmontools
+
+#Terminal Emulator
+yum install -y terminator
+yum install -y guake
+
+#chm viewer
+yum install -y xchm
+#yum install -y kchmviewer
+
+#Editor
+yum install -y vim
+#yum install -y emacs
+#yum install -y kate
+#yum install -y eclipse
+
+#Image Editor
+yum install -y gimp
+#yum install -y gthumb
+
+
+
+# Download and install Google Software Public Signing Key
+wget https://dl-ssl.google.com/linux/linux_signing_key.pub
+sudo rpm --import linux_signing_key.pub
+rm linux_signing_key.pub 
+
+ 
+#Installing Media Players, DVD codec and Ripper
+yum install -y vlc
+yum install -y regionset libdvdcss
+yum update -y
+#yum install -y k9copy
+#yum install -y xine xine-lib-extras xine-lib-extras-freeworld
+ 
+#Installing Games
+#yum install -y kdegames
+ 
+#End message
+echo "Installation Complete"
