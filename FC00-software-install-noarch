@@ -8,13 +8,19 @@ yum update -y yum
 yum update -y
  
 #Additional yum plugins
-#yum install -y yum-plugin-fastestmirror
+yum install -y yum-plugin-fastestmirror
+
+#ELRepo for CentOS 7
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh https://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm 
+
+#EPEL Repo for CentOS 7
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+#RPMFusion Repo for CentOS 7
+sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm
  
-#Additional yum repository configuration for rpmfusion and livna
-sudo yum localinstall -y --nogpgcheck http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
- 
-rpm -ivh http://rpm.livna.org/livna-release.rpm
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-livna
+
 yum update -y
 
  
@@ -22,23 +28,18 @@ yum update -y
 yum install -y gparted
 yum install -y gcc kernel-devel
 yum install -y unrar
-#yum install -y cups-pdf
 yum install -y wget
 yum install -y smartmontools
 
 #Terminal Emulator
-yum install -y terminator
-yum install -y guake
-
-#chm viewer
-yum install -y xchm
-#yum install -y kchmviewer
+#yum install -y terminator
+#yum install -y guake
 
 #Editor
 yum install -y vim
+yum install -y nano
 #yum install -y emacs
 #yum install -y kate
-#yum install -y eclipse
 
 #Image Editor
 yum install -y gimp
@@ -54,13 +55,10 @@ rm linux_signing_key.pub
  
 #Installing Media Players, DVD codec and Ripper
 yum install -y vlc
-yum install -y regionset libdvdcss
+yum install -y libdvdcss
 yum update -y
-#yum install -y k9copy
-#yum install -y xine xine-lib-extras xine-lib-extras-freeworld
- 
-#Installing Games
-#yum install -y kdegames
+yum install -y xine xine-lib-extras xine-lib-extras-freeworld
+
  
 #End message
 echo "Installation Complete"
