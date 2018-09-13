@@ -1,0 +1,68 @@
+#! /bin/bash
+# This software installation script is for CentOS 6
+# You just need to hash out or remove any installation you don't want
+# You can also add in additional software packages you like
+ 
+#Updates
+yum update -y yum
+yum update -y
+ 
+#Additional yum plugins
+yum install -y yum-plugin-fastestmirror
+
+#ELRepo
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
+
+#EPEL Repo
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+#RPMFusion Repo
+sudo yum localinstall --nogpgcheck https://download1.rpmfusion.org/free/el/rpmfusion-free-release-6.noarch.rpm https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-6.noarch.rpm
+ 
+
+yum update -y
+
+ 
+#Installing Essential Utilities
+yum install -y gparted
+yum install -y gcc kernel-devel
+yum install -y unrar
+yum install -y wget
+yum install -y smartmontools
+
+#Terminal Emulator
+#yum install -y terminator
+#yum install -y guake
+
+#Editor
+yum install -y vim
+yum install -y nano
+#yum install -y emacs
+#yum install -y kate
+
+#Image Editor
+yum install -y gimp
+#yum install -y gthumb
+
+
+
+# Download and install Google Software Public Signing Key
+wget https://dl-ssl.google.com/linux/linux_signing_key.pub
+sudo rpm --import linux_signing_key.pub
+rm linux_signing_key.pub 
+
+ 
+#Installing Media Players, DVD codec and Ripper
+yum install -y vlc
+yum install -y libdvdcss
+yum update -y
+#yum install -y xine xine-lib-extras xine-lib-extras-freeworld
+
+#regionset only available in CentOS 6
+yum install -y regionset
+#yum install -y k9copy
+
+ 
+#End message
+echo "Installation Complete"
